@@ -1,10 +1,10 @@
-from fastapi import FastAPI
+from hatchet import Hatchet
+from app.jobs import AggregateInsightsJob
 
-
-app = FastAPI()
-
-@app.get("/")
-def hw():
-    return {
-        "status": "HW"
-    }
+if __name__ == "__main__":
+    app = Hatchet()
+    
+    # Schedule the job to run at the desired interval   
+    AggregateInsightsJob().schedule(interval="daily")
+    
+    app.run()
